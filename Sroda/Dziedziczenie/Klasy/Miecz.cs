@@ -13,9 +13,10 @@ namespace Dziedziczenie.Klasy
             JednoReczny = jednoReczny;
         }
 
-        public void WypiszInformacje()
+        public override string ToString()
         {
-            Console.WriteLine($"Nazwa: {Nazwa}, Damage: {Damage}, Zagieg: {Zasieg}, Jednoreczny: {JednoReczny}");
+            return base.ToString() + $", Jednoreczny: {JednoReczny}";
         }
+
     }
 }

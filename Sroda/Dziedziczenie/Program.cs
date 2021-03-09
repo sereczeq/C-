@@ -1,5 +1,6 @@
 ﻿using Dziedziczenie.Klasy;
 using System;
+using System.Collections.Generic;
 
 namespace Dziedziczenie
 {
@@ -7,61 +8,119 @@ namespace Dziedziczenie
     {
         static void Main(string[] args)
         {
-            //Pisak pisak1 = new Pisak("Czerwony", 0.4f, 12.49m);
+            //PisakTest();
+            //Dziedziczenie();
+            //ToStringTest();
+            //StatyczneTest();
+            /*
+             * Zadanie: Napisać program konsolowy, który będzie prosił użytkownika o podawanie
+                kolejno liczb całkowitych, zapisywał je w tablicy i wyświetlał za każdym razem
+                zawartość tablicy i średnią podanych liczb. Dodać metodę ZamienNaTekst, która
+                przyjmie tablicę i zwróci ją w postaci tekstu: [el1, el2, el3].
+             */
+            Tablice();
+            Listy();
 
-            //Pisak pisak2 = new Pisak(0.6f, 2.99m);
+        }
 
-            //Pisak pisak3 = new Pisak("Różowy", 1f);
-
-            //pisak1.WypiszInformacje();
-            //pisak2.WypiszInformacje();
-            //pisak3.WypiszInformacje();
-
-            //Pistolet pistolet = new Pistolet("Pistolet",10, 500, 5);
-            //Miecz miecz = new Miecz("Miecz", 200, 3, true);
-
-            //pistolet.WypiszInformacje();
-            //miecz.WypiszInformacje();
-
-            //int hpPrzeciwnika = 50;
-            //hpPrzeciwnika = pistolet.Atak(hpPrzeciwnika);
-            //Console.WriteLine(hpPrzeciwnika);
-            //hpPrzeciwnika = miecz.Atak(hpPrzeciwnika);
-            //Console.WriteLine(hpPrzeciwnika);
-
-            int przeciwnik = 100;
-            Miecz miecz = new Miecz("Miecz", 30, 3, true);
-
-            //pętla gry
-            while(true)
+        private static void Listy()
+        {
+            List<int> lista = new List<int>();
+            for(int i = 0; i < 100; i++)
             {
-                Console.WriteLine("HP przeciwnika to: " + przeciwnik);
-                Console.WriteLine("Czy chcesz atakować? (T/N)");
-                string odpowiedz = Console.ReadLine();
-                if(odpowiedz == "T")
-                {
-                    przeciwnik = miecz.Atak(przeciwnik);
-                    Console.WriteLine("Zaatakowałes zaatakowałeś");
-                }
-                else if(odpowiedz == "N")
-                {
-                    Console.WriteLine("Nie zaatakowałeś");
-                }
-                else if(odpowiedz == "esc")
-                {
-                    break;
-                }
+                lista.Add(i);
+            }
+        }
 
-                if(przeciwnik < 0)
-                {
-                    Console.WriteLine("przciwnik pokonany");
-                    break;
-                }
+        private static void Tablice()
+        {
+            int[] tablica = new int[5];
+            for(int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"Podaj {i + 1}-tą liczbę");
+                tablica[i] = int.Parse(Console.ReadLine());
+                Console.WriteLine(WypiszTablice(tablica));
+                Console.WriteLine($"Średnia podanych liczb to: {PoliczSrednia(tablica)}");
 
             }
-            Console.WriteLine("Koniec Gry");
+        }
 
+        private static float PoliczSrednia(int[] tablica)
+        {
+            float suma = 0;
+            for(int i = 0; i < 5; i++)
+            {
+                suma += tablica[i];
+            }
+            return suma / 5;
+        }
 
+        private static string WypiszTablice(int[] tablica)
+        {
+            string returnString = "[";
+            for (int i = 0; i < 5; i++)
+            {
+                returnString += tablica[i] + ", ";
+            }
+            return returnString + "]";
+        }
+
+        private static void StatyczneTest()
+        {
+            Osoba jan = new Osoba("Jan", "Kowalski");
+            Console.WriteLine(jan.ToString());
+
+            Osoba kamil = new Osoba("Kamil", "Nowak");
+            Console.WriteLine(kamil.ToString());
+
+            Osoba adam = new Osoba("Adam", "Kwiatkowski");
+            Console.WriteLine(adam.ToString());
+
+            Console.WriteLine(adam.ToString());
+            Console.WriteLine(kamil.ToString());
+            Console.WriteLine(jan.ToString());
+        }
+
+        private static void ToStringTest()
+        {
+            Bron bron = new Bron("bla", 0, 0);
+            Bron bron1 = new Bron("bla", 0, 0);
+            if (bron.ToString() == bron1.ToString())
+            {
+                Console.WriteLine("Są takie same");
+            }
+
+            Pistolet pistolet = new Pistolet("Pistolet", 10, 500, 5);
+            Miecz miecz = new Miecz("Miecz", 200, 3, true);
+            Console.WriteLine(miecz.ToString());
+            Console.WriteLine(pistolet.ToString());
+        }
+
+        private static void Dziedziczenie()
+        {
+            Pistolet pistolet = new Pistolet("Pistolet", 10, 500, 5);
+            Miecz miecz = new Miecz("Miecz", 200, 3, true);
+
+            pistolet.WypiszInformacje();
+
+            int hpPrzeciwnika = 50;
+            hpPrzeciwnika = pistolet.Atak(hpPrzeciwnika);
+            Console.WriteLine(hpPrzeciwnika);
+            hpPrzeciwnika = miecz.Atak(hpPrzeciwnika);
+            Console.WriteLine(hpPrzeciwnika);
+        }
+
+        private static void PisakTest()
+        {
+            Pisak pisak1 = new Pisak("Czerwony", 0.4f, 12.49m);
+
+            Pisak pisak2 = new Pisak(0.6f, 2.99m);
+
+            Pisak pisak3 = new Pisak("Różowy", 1f);
+
+            pisak1.WypiszInformacje();
+            pisak2.WypiszInformacje();
+            pisak3.WypiszInformacje();
         }
     }
 }

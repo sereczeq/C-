@@ -10,7 +10,6 @@ namespace Dziedziczenie.Klasy
         public float Grubosc = 0.4f;
         public decimal Cena = 5.0m;
 
-
         //konstruktor - czyli metoda która przypisuje wartość w momencie tworzenia obiektu
         public Pisak(string kolor, float grubosc, decimal cena)
         {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dziedziczenie.Klasy
 {
-    abstract class Bron
+    class Bron
     {
         public string Nazwa = "Bron";
         public int Damage = 0;
@@ -28,5 +28,14 @@ namespace Dziedziczenie.Klasy
             return hp - Damage;
         }
 
+        public virtual void NapiszKlasę()
+        {
+            Console.WriteLine("Jestem klasy Bron");
+        }
+
+        public override string ToString()
+        {
+            return $"Nazwa: {Nazwa}, Damage: {Damage}, Zasieg: {Zasieg}";
+        }
     }
 }

@@ -16,5 +16,18 @@ namespace Dziedziczenie.Klasy
         {
             Console.WriteLine($"Nazwa: {Nazwa}, Damage: {Damage}, Zagieg: {Zasieg}, Magazynek: {Magazynek}");
         }
+
+        public override void NapiszKlasę()
+        {
+            Console.WriteLine("Jestem klasy Pistolet");
+        }
+
+
+        public override string ToString()
+        {
+            return base.ToString() + $", Magazynek: {Magazynek}";
+        }
+
+
     }
 }
