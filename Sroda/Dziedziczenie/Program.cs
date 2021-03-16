@@ -18,8 +18,40 @@ namespace Dziedziczenie
                 zawartość tablicy i średnią podanych liczb. Dodać metodę ZamienNaTekst, która
                 przyjmie tablicę i zwróci ją w postaci tekstu: [el1, el2, el3].
              */
-            Tablice();
-            Listy();
+
+            Wojownik gracz = new Wojownik("Jan", 100, 15, 5);
+            Mag mag = new Mag("Gandalf", 50, 20, 3);
+            Console.WriteLine(gracz.WyswietlStatystyki());
+            Console.WriteLine(mag.WyswietlStatystyki());
+
+            //gracz atakuje maga:
+            mag.OdejmijHP(gracz.PobierzSileAtaku());
+            // \/
+            mag.OdejmijHP(15);
+            // \/
+            mag.Hp -= 15;
+
+            //mag atakuje grazcz:
+            gracz.OdejmijHP(mag.PobierzSileAtaku());
+            // Damage + Moc
+            // Atak - Obrona
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Tablice();
+            //Listy();
 
         }
 
