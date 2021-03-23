@@ -1,8 +1,5 @@
 ﻿using GraRpgMateusz.KlasyBohaterow;
 using GraRpgMateusz.KlasyBroni;
-using GraRpgMateusz.KlasyBroni.Lucznik;
-using GraRpgMateusz.KlasyBroni.Wlucznik;
-using GraRpgMateusz.KlasyBroni.Wojownik;
 using System;
 
 namespace GraRpgMateusz
@@ -10,40 +7,176 @@ namespace GraRpgMateusz
     class Program
     {
 
-        private static Bron[] GenerujBronie(Hero hero)
-        {
-            Bron[] bronie = new Bron[4];
-            if (hero.ToString().Contains("Wojownik"))
-            {
-                bronie[0] = new BronWojownika("topór", 4, 0);
-                bronie[1] = new BronWojownika("miecz", 2, 3);
-                bronie[2] = new BronWojownika("topór z tarczą", 3, 3);
-                bronie[3] = new BronWojownika("miecz z tarczą", 1, 6);
-            }
-            else if (hero.ToString().Contains("Wlucznik"))
-            {
-                bronie[0] = new BronWlucznika("pika", 4, 0, 0, 2);
-                bronie[1] = new BronWlucznika("włócznia", 3, 3, 2, 0);
-                bronie[2] = new BronWlucznika("młot bojowy", 3, 0, 3, 0);
-                bronie[3] = new BronWlucznika("halabarda", 1, 0, 6, 0);
-            }
-            else if (hero.ToString().Contains("Lucznik"))
-            {
-                bronie[0] = new BronLucznika("łuk długi", 4, 0, 0, 3);
-                bronie[1] = new BronLucznika("łuk krótki", 2, 0, 0, 3);
-                bronie[2] = new BronLucznika("długi łuk ze strzałami przebijającymi zbroję", 3, 0, 3, 0);
-                bronie[3] = new BronLucznika("krótki łuk ze strzałami przebijającymi zbronę", 1, 0, 6, 0);
 
-            }
-            return bronie;
-        }
 
         static void Main(string[] args)
+        {
+
+            Hero hero = StworzBohatera();
+            Mag mag = StworzMaga();
+            StworzBron(hero);
+
+            //troszkę tekstu
+            {
+                Console.WriteLine(hero.Statystyki());
+                Console.WriteLine($"Walczysz z magiem:\n{mag.Statystyki()}");
+                Console.WriteLine("WALKA SIĘ ROZPOCZYNA");
+                Console.WriteLine("naciśnij enter aby kontynuować");
+                Console.ReadLine();
+            }
+
+            if (Walka(hero, mag))
+            {
+                DodajPieniadze(hero);
+                OtworzSklep(hero);
+            }
+            else
+            {
+                KoniecGry(hero);
+            }
+            KoniecGry(hero);
+
+
+        }
+
+        private static void OtworzSklep(Hero hero)
+        {
+            if (hero.Pieniadze >= 10)
+            {
+                Console.WriteLine("jeśli chcesz otworzyć sklep naciśnij s");
+                string aa = Console.ReadLine();
+                if (aa == "s")
+                {
+                    Sklep(hero);
+                }
+            }
+        }
+
+        private static void Sklep(Hero hero)
+        {
+            Console.WriteLine("ilość twojego złota to {0}", hero.Pieniadze);
+            Console.WriteLine("możesz kupić :");
+            Console.WriteLine("1 - topór: atak + 4 , kosztuje 10 złota");
+            Console.WriteLine("2 - tarcza: obrona + 9 , kosztuje 10 złota");
+            Console.WriteLine("3 - potka na leczenie : od razu + 50 hp , kosztuje 10 złota");
+            Console.WriteLine("4 - ulepszony topór: atak + 4 , obrona + 9,kosztuje 15 złota");
+            Console.WriteLine("esc - wyjdź ze sklepu");
+            string n = Console.ReadLine();
+            if (n == "1" && hero.Pieniadze >= 10)
+            {
+                Console.WriteLine("Pomyślnie zakupiłeś topór");
+                hero.Atak += 4;
+                hero.Pieniadze -= 10;
+                Console.WriteLine("");
+                Console.WriteLine("Twoje statystyki :");
+                Console.WriteLine("twoje hp wynosi {0}", hero.Hp);
+                Console.WriteLine("twój atak wynosi {0}", hero.Atak);
+                Console.WriteLine("twoja obrona wynosi {0}", hero.Obrona);
+            }
+            else if (n == "2" && hero.Pieniadze >= 10)
+            {
+                Console.WriteLine("Pomyślnie zakupiłeś tarcza");
+                hero.Obrona += 9;
+                hero.Pieniadze -= 10;
+                Console.WriteLine("");
+                Console.WriteLine("Twoje statystyki :");
+                Console.WriteLine("twoje hp wynosi {0}", hero.Hp);
+                Console.WriteLine("twój atak wynosi {0}", hero.Atak);
+                Console.WriteLine("twoja obrona wynosi {0}", hero.Obrona);
+            }
+            else if (n == "3" && hero.Pieniadze >= 10)
+            {
+                Console.WriteLine("Pomyślnie zakupiłeś potkę na leczenie");
+                hero.Hp += 50;
+                hero.Pieniadze -= 10;
+                Console.WriteLine("");
+                Console.WriteLine("Twoje statystyki :");
+                Console.WriteLine("twoje hp wynosi {0}", hero.Hp);
+                Console.WriteLine("twój atak wynosi {0}", hero.Atak);
+                Console.WriteLine("twoja obrona wynosi {0}", hero.Obrona);
+            }
+            else if (n == "4" && hero.Pieniadze >= 15)
+            {
+                Console.WriteLine("Pomyślnie zakupiłeś ulepszony topór");
+                hero.Atak += 4;
+                hero.Obrona += 9;
+                hero.Pieniadze -= 15;
+                Console.WriteLine("");
+                Console.WriteLine("Twoje statystyki :");
+                Console.WriteLine("twoje hp wynosi {0}", hero.Hp);
+                Console.WriteLine("twój atak wynosi {0}", hero.Atak);
+                Console.WriteLine("twoja obrona wynosi {0}", hero.Obrona);
+            }
+            else
+            {
+
+            }
+
+        }
+
+        private static void DodajPieniadze(Hero hero)
+        {
+            hero.Pieniadze += 2;
+            hero.PotkiNaLeczenie++;
+            Console.WriteLine("liczba twoich potek na leczenie to {0}", hero.PotkiNaLeczenie);
+            Random statystyka = new Random();
+            int g = statystyka.Next(1, 3);
+            if (g == 1)
+            {
+                hero.Atak++;
+            }
+            else if (g == 2)
+            {
+                hero.Obrona += 3;
+            }
+            else
+            {
+                hero.Hp += 15;
+            }
+        }
+
+        private static void StworzBron(Hero hero)
+        {
+            Console.WriteLine(hero.Statystyki());
+            Console.WriteLine("Wybierz broń");
+            Bron[] bronie = Bron.GenerujBronie(hero);
+            for (int i = 0; i < bronie.Length; i++)
+            {
+                Console.WriteLine($"{i + 1} - {bronie[i].Statystyki()}");
+            }
+
+            int odpowiedz = -1;
+            while (odpowiedz < 0 || odpowiedz >= bronie.Length)
+            {
+                odpowiedz = Int32.Parse(Console.ReadLine());
+            }
+
+            hero.DodajBron(bronie[odpowiedz]);
+        }
+
+        private static Mag StworzMaga()
+        {
+            string[] nazwyMagow = new string[] { "Gandalf",
+            "Saruman",
+            "Sauron",
+            "Yenefer",
+            "Vilgefords"};
+
+            Random random = new Random();
+
+            Mag mag = new Mag(random.Next(10, 30),
+                nazwyMagow[random.Next(0, nazwyMagow.Length)],
+                random.Next(11, 14),
+                random.Next(45, 60),
+                0);
+            return mag;
+        }
+
+        private static Hero StworzBohatera()
         {
             Console.WriteLine("Podaj imię bohatera: ");
             string imie = Console.ReadLine();
             Hero hero = null;
-
             bool poprawnyInput = false;
             while (!poprawnyInput)
             {
@@ -80,43 +213,14 @@ namespace GraRpgMateusz
                     poprawnyInput = false;
                 }
             }
-            string[] nazwyMagow = new string[] { "Gandalf",
-            "Saruman",
-            "Sauron",
-            "Yenefer",
-            "Vilgefords"};
 
-            Random random = new Random();
+            return hero;
+        }
 
-            Mag mag = new Mag(random.Next(10, 30),
-                nazwyMagow[random.Next(0, nazwyMagow.Length)],
-                random.Next(11, 14),
-                random.Next(45, 60),
-                0);
-
-            Console.WriteLine(hero.Statystyki());
-            Console.WriteLine("Wybierz broń");
-            Bron[] bronie = GenerujBronie(hero);
-            for (int i = 0; i < bronie.Length; i++)
-            {
-                Console.WriteLine($"{i + 1} - {bronie[i].Statystyki()}");
-            }
-
-            int odpowiedz = -1;
-            while (odpowiedz < 0 || odpowiedz >= bronie.Length)
-            {
-                odpowiedz = Int32.Parse(Console.ReadLine());
-            }
-
-            hero.DodajBron(bronie[odpowiedz]);
-            Console.WriteLine(hero.Statystyki());
-
-            Console.WriteLine($"Walczysz z magiem:\n{mag.Statystyki()}");
-            Console.WriteLine("WALKA SIĘ ROZPOCZYNA");
-            Console.WriteLine("naciśnij enter aby kontynuować");
-            Console.ReadLine();
-
-            while (mag.Hp > 0 && hero.Hp > 0)
+        private static bool Walka(Hero hero, Mag mag)
+        {
+            int odpowiedz = 0;
+            while (true)
             {
 
                 int iloscOdpowiedzi = 1;
@@ -148,25 +252,9 @@ namespace GraRpgMateusz
                 if (mag.Hp <= 0)
                 {
                     Console.WriteLine("mag przegrał");
-                    dodajPieniadze();
-                    wygrana();
-
-                    if (hero.Pieniadze >= 10)
-                    {
-                        Console.WriteLine("jeśli chcesz otworzyć sklep naciśnij s");
-                        string aa = Console.ReadLine();
-                        if (aa == "s")
-                        {
-                            sklep();
-                        }
-                        else
-                        {
-
-                        }
-                    }
-
-                    break;
+                    return true;
                 }
+
 
 
                 Console.WriteLine($"Mag atakuje za {mag.PobierzSileAtaku()} ataku");
@@ -175,108 +263,28 @@ namespace GraRpgMateusz
 
                 if (hero.Hp <= 0)
                 {
-                    Console.WriteLine("koniec gry");
-                    break;
+                    Console.WriteLine("mag wygrał");
+                    return false;
                 }
 
 
             }
-            void dodajPieniadze()
+        }
+
+        private static void KoniecGry(Hero hero)
+        {
+            string a = "";
+            for(int i = 0; i < 200; i++)
             {
-                hero.Pieniadze += 2;
-                hero.PotkiNaLeczenie++;
-                Console.WriteLine("liczba twoich potek na leczenie to {0}", hero.PotkiNaLeczenie);
-                Random statystyka = new Random();
-                int g = statystyka.Next(1, 3);
-                if (g == 1)
-                {
-                    hero.Atak++;
-                }
-                else if (g == 2)
-                {
-                    hero.Obrona += 3;
-                }
-                else
-                {
-                    hero.Hp += 15;
-                }
+                a += "-";
             }
-            void sklep()
+            a += "\nKONIEC GRY\n";
+            for (int i = 0; i < 200; i++)
             {
-                Console.WriteLine("ilość twojego złota to {0}", hero.Pieniadze);
-                Console.WriteLine("możesz kupić :");
-                Console.WriteLine("1 - topór: atak + 4 , kosztuje 10 złota");
-                Console.WriteLine("2 - tarcza: obrona + 9 , kosztuje 10 złota");
-                Console.WriteLine("3 - potka na leczenie : od razu + 50 hp , kosztuje 10 złota");
-                Console.WriteLine("4 - ulepszony topór: atak + 4 , obrona + 9,kosztuje 15 złota");
-                Console.WriteLine("esc - wyjdź ze sklepu");
-                string n = Console.ReadLine();
-                if (n == "1" && hero.Pieniadze >= 10)
-                {
-                    Console.WriteLine("Pomyślnie zakupiłeś topór");
-                    hero.Atak += 4;
-                    hero.Pieniadze -= 10;
-                    Console.WriteLine("");
-                    Console.WriteLine("Twoje statystyki :");
-                    Console.WriteLine("twoje hp wynosi {0}", hero.Hp);
-                    Console.WriteLine("twój atak wynosi {0}", hero.Atak);
-                    Console.WriteLine("twoja obrona wynosi {0}", hero.Obrona);
-                }
-                else if (n == "2" && hero.Pieniadze >= 10)
-                {
-                    Console.WriteLine("Pomyślnie zakupiłeś tarcza");
-                    hero.Obrona += 9;
-                    hero.Pieniadze -= 10;
-                    Console.WriteLine("");
-                    Console.WriteLine("Twoje statystyki :");
-                    Console.WriteLine("twoje hp wynosi {0}", hero.Hp);
-                    Console.WriteLine("twój atak wynosi {0}", hero.Atak);
-                    Console.WriteLine("twoja obrona wynosi {0}", hero.Obrona);
-                }
-                else if (n == "3" && hero.Pieniadze >= 10)
-                {
-                    Console.WriteLine("Pomyślnie zakupiłeś potkę na leczenie");
-                    hero.Hp += 50;
-                    hero.Pieniadze -= 10;
-                    Console.WriteLine("");
-                    Console.WriteLine("Twoje statystyki :");
-                    Console.WriteLine("twoje hp wynosi {0}", hero.Hp);
-                    Console.WriteLine("twój atak wynosi {0}", hero.Atak);
-                    Console.WriteLine("twoja obrona wynosi {0}", hero.Obrona);
-                }
-                else if (n == "4" && hero.Pieniadze >= 15)
-                {
-                    Console.WriteLine("Pomyślnie zakupiłeś ulepszony topór");
-                    hero.Atak += 4;
-                    hero.Obrona += 9;
-                    hero.Pieniadze -= 15;
-                    Console.WriteLine("");
-                    Console.WriteLine("Twoje statystyki :");
-                    Console.WriteLine("twoje hp wynosi {0}", hero.Hp);
-                    Console.WriteLine("twój atak wynosi {0}", hero.Atak);
-                    Console.WriteLine("twoja obrona wynosi {0}", hero.Obrona);
-                }
-                else
-                {
-
-                }
-
+                a += "-";
             }
-
-            void wygrana()
-            {
-                if (mag.Hp <= 0)
-                {
-                    Console.WriteLine("{0} wygrywa", hero.Nazwa);
-                    Console.WriteLine("");
-                }
-                else if (hero.Hp <= 0)
-                {
-                    Console.WriteLine("{0} wygrywa", mag.Nazwa);
-                    Console.WriteLine("Przegrałeś");
-                    Console.ReadLine();
-                }
-            }
+            Console.WriteLine(a);
+            Console.WriteLine(hero.Statystyki());
         }
     }
 }
