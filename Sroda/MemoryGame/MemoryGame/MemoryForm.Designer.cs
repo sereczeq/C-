@@ -44,53 +44,59 @@ namespace MemoryGame
             // labelPunkty
             // 
             this.labelPunkty.AutoSize = true;
-            this.labelPunkty.Location = new System.Drawing.Point(12, 9);
+            this.labelPunkty.Location = new System.Drawing.Point(16, 11);
+            this.labelPunkty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPunkty.Name = "labelPunkty";
-            this.labelPunkty.Size = new System.Drawing.Size(43, 13);
+            this.labelPunkty.Size = new System.Drawing.Size(55, 17);
             this.labelPunkty.TabIndex = 0;
             this.labelPunkty.Text = "Punkty:";
             // 
             // labelPunktyWartosc
             // 
             this.labelPunktyWartosc.AutoSize = true;
-            this.labelPunktyWartosc.Location = new System.Drawing.Point(61, 9);
+            this.labelPunktyWartosc.Location = new System.Drawing.Point(81, 11);
+            this.labelPunktyWartosc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPunktyWartosc.Name = "labelPunktyWartosc";
-            this.labelPunktyWartosc.Size = new System.Drawing.Size(19, 13);
+            this.labelPunktyWartosc.Size = new System.Drawing.Size(24, 17);
             this.labelPunktyWartosc.TabIndex = 1;
             this.labelPunktyWartosc.Text = "60";
             // 
             // labelCzas
             // 
             this.labelCzas.AutoSize = true;
-            this.labelCzas.Location = new System.Drawing.Point(385, 9);
+            this.labelCzas.Location = new System.Drawing.Point(513, 11);
+            this.labelCzas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCzas.Name = "labelCzas";
-            this.labelCzas.Size = new System.Drawing.Size(33, 13);
+            this.labelCzas.Size = new System.Drawing.Size(43, 17);
             this.labelCzas.TabIndex = 2;
             this.labelCzas.Text = "Czas:";
             // 
             // labelCzasWartosc
             // 
             this.labelCzasWartosc.AutoSize = true;
-            this.labelCzasWartosc.Location = new System.Drawing.Point(427, 9);
+            this.labelCzasWartosc.Location = new System.Drawing.Point(569, 11);
+            this.labelCzasWartosc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCzasWartosc.Name = "labelCzasWartosc";
-            this.labelCzasWartosc.Size = new System.Drawing.Size(19, 13);
+            this.labelCzasWartosc.Size = new System.Drawing.Size(24, 17);
             this.labelCzasWartosc.TabIndex = 3;
             this.labelCzasWartosc.Text = "60";
             // 
             // labelPoczatekGry
             // 
             this.labelPoczatekGry.AutoSize = true;
-            this.labelPoczatekGry.Location = new System.Drawing.Point(196, 9);
+            this.labelPoczatekGry.Location = new System.Drawing.Point(261, 11);
+            this.labelPoczatekGry.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPoczatekGry.Name = "labelPoczatekGry";
-            this.labelPoczatekGry.Size = new System.Drawing.Size(95, 13);
+            this.labelPoczatekGry.Size = new System.Drawing.Size(125, 17);
             this.labelPoczatekGry.TabIndex = 4;
             this.labelPoczatekGry.Text = "Początek gry za: 5";
             // 
             // panelMemory
             // 
-            this.panelMemory.Location = new System.Drawing.Point(12, 25);
+            this.panelMemory.Location = new System.Drawing.Point(16, 31);
+            this.panelMemory.Margin = new System.Windows.Forms.Padding(4);
             this.panelMemory.Name = "panelMemory";
-            this.panelMemory.Size = new System.Drawing.Size(435, 17);
+            this.panelMemory.Size = new System.Drawing.Size(580, 21);
             this.panelMemory.TabIndex = 5;
             // 
             // timerZakrywacz
@@ -104,13 +110,14 @@ namespace MemoryGame
             // timerCzasPodlagu
             // 
             this.timerCzasPodlagu.Interval = 1000;
+            this.timerCzasPodlagu.Tick += new System.EventHandler(this.timerCzasPodlagu_Tick);
             // 
             // MemoryForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(463, 51);
+            this.ClientSize = new System.Drawing.Size(617, 63);
             this.Controls.Add(this.panelMemory);
             this.Controls.Add(this.labelPoczatekGry);
             this.Controls.Add(this.labelCzasWartosc);
@@ -118,6 +125,7 @@ namespace MemoryGame
             this.Controls.Add(this.labelPunktyWartosc);
             this.Controls.Add(this.labelPunkty);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MemoryForm";
             this.Text = "Memory Game";
             this.ResumeLayout(false);
