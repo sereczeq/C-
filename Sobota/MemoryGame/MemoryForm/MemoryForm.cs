@@ -16,16 +16,30 @@ namespace MemoryForm
 
         private GameSettings _settings;
 
+        // zmienne do metody BtnClicked sprawdzające ile kart jest odkrytych oraz czy są parą
+        private MemoryCard pierwszaKarta = null;
+        private MemoryCard drugaKarta = null;
+
         // "Main"
         public MemoryForm()
         {
             InitializeComponent();
 
+            StartGry();
+        }
+
+        private void StartGry()
+        {
             _settings = new GameSettings();
 
             UstawKontrolki();
 
             GenerujKarty();
+
+            // włączenie timera
+            timerCzasPodgladu.Start();
+
+            pierwszaKarta = drugaKarta = null;
         }
 
         private void UstawKontrolki()
@@ -62,12 +76,21 @@ namespace MemoryForm
             // TODO: dać możliwośc wyboru ilości obrazków
             _settings.MaxPunkty = memories.Length;
 
+            // dopóki liczba pól na karty jest większa niż ilość plikó (kart) zmniejsz liczbę kolumn
+            while(_settings.Kolumny * _settings.Wiersze / 2 > memories.Length)
+            {
+                _settings.Kolumny--;
+            }
+
             // tworzymy listę na karty do gry
             var cards = new List<MemoryCard>();
 
             // dla każdego z obrazka tworzymy po dwie karty
-            foreach (string memory in memories)
+            for(int i = 0; i < _settings.Kolumny * _settings.Wiersze / 2; i++)
             {
+                // wczytujemy ścieżkę do grafiki
+                string memory = memories[i];
+
                 // tworzymy unikalny identyfikator dla karty
                 Guid id = Guid.NewGuid();
 
@@ -83,7 +106,7 @@ namespace MemoryForm
             // generator liczb pseudolosowych
             Random random = new Random();
 
-            // Czyścimy zawartość panelu kart, w przypadku gdgy np resetujemy grę
+            // Czyścimy zawartość panelu kart, w przypadku gdy np resetujemy grę
             // i są tam jeszcze stare karty.
             panelMemory.Controls.Clear();
 
@@ -115,6 +138,9 @@ namespace MemoryForm
                     karta.Width = _settings.Bok;
                     karta.Height = _settings.Bok;
 
+                    // dodajemy naszą metodę btn clicked żeby połączyć kartę z met
+                    karta.Click += BtnClicked;
+
                     // domyślnie odkrywamy kartę
                     karta.Odkryj();
 
@@ -123,6 +149,131 @@ namespace MemoryForm
                 }
             }
 
+        }
+
+        // metoda timera CzasPodglądu - uruchamia się co 1 sekundę
+        // jej zadaniem jest zmniejszenie czasu podglądu
+        // oraz, gdy czas się skończy zakrycie wszystkich kart i wystartowanie gry
+        private void timerCzasPodgladu_Tick(object sender, EventArgs e)
+        {
+            // zmniejszamy czas podglądu o 1 co sekundę
+            _settings.CzasPodgladu--;
+
+            // aktualizujemy tekst
+            labelPoczatekGry.Text = $"Początek gry za {_settings.CzasPodgladu} sekund.";
+
+            if (_settings.CzasPodgladu <= 0)
+            {
+                // zatrzymujemy timer
+                timerCzasPodgladu.Stop();
+
+                // "znikamy" label 
+                labelPoczatekGry.Visible = false;
+
+                // zakrywanie wszystkich kart
+                // dla każdego elementu typu MemoryCard (dla każdej karty) w panelu
+                foreach(MemoryCard karta in panelMemory.Controls)
+                {
+                    // zakryj kartę
+                    karta.Zakryj();
+                }
+
+                // aktywowanie licznika czasu gry
+                timerCzasGry.Start();
+            }
+        }
+
+        private void BtnClicked(object sender, EventArgs e)
+        {
+            // sender to kontrolka, która wywołała zdarzenie
+            // ponieważ metoda jest podpięta tylko pod karty do gry
+            // możemy zrzutować object na MemoryCard, bo wiemy, że nie może to być nic innego
+            MemoryCard karta = (MemoryCard) sender;
+
+            karta.Odkryj();
+
+            // jeżeli nie otwarto jeszcze żadnej karty (obecna jest pierwsza)
+            if (pierwszaKarta == null)
+            {
+                pierwszaKarta = karta;
+            }
+            // else oznacza że obecna karta jest drugą, teraz musimy sprawdzić czy są takie same
+            else
+            {
+                drugaKarta = karta;
+
+                // żeby użytkownik nie mógł otworzyć trzeciej karty
+                panelMemory.Enabled = false;
+
+                // jeżeli karty są parą to
+                if (pierwszaKarta.Id == drugaKarta.Id)
+                {
+                    // dodajemy punkty
+                    _settings.AktualnePunkty++;
+
+                    // aktualizujemy label
+                    labelPunktyWartosc.Text = _settings.AktualnePunkty.ToString();
+
+                    // notujemy że obie karty są otwarte, i że pierwsza jest "pusta" - można znowu otwierać
+                    pierwszaKarta = null;
+                    drugaKarta = null;
+
+                    // odblokowujemy możliwość klikania w karty
+                    panelMemory.Enabled = true;
+                }
+                else
+                {
+                    timerZakrywacz.Start();
+                }
+            }
+        }
+
+        // po sekundzie od odkrycia drugiej karty nie do pary, zakryj karty i odblokuj panel
+        private void timerZakrywacz_Tick(object sender, EventArgs e)
+        {
+            // zakryj karty
+            pierwszaKarta.Zakryj();
+            drugaKarta.Zakryj();
+
+            // wyczyść zmienne pomocnicze
+            pierwszaKarta = drugaKarta = null;
+
+            // odblokowujemy możliwość klikania w karty
+            panelMemory.Enabled = true;
+
+            timerZakrywacz.Stop();
+        }
+
+        private void timerCzasGry_Tick(object sender, EventArgs e)
+        {
+            // to samo co z timerem początku gry
+            _settings.CzasGry--;
+            labelCzasWartosc.Text = _settings.CzasGry.ToString();
+
+            // sprawdzamy czy nie nastąpił koniec gry z jednego z dwóch powodów
+            // - skończył się czas gry
+            // lub odkryliśmy wszystkie karty - czyli zostały zdobyte wszystkie możliwe punkty
+            if (_settings.CzasGry <= 0 || _settings.AktualnePunkty == _settings.MaxPunkty)
+            {
+                // jeżeli tak to zatrzymujemy timer CzasGry oraz timer Zakrywacz
+                timerCzasGry.Stop();
+                timerZakrywacz.Stop();
+
+                // wyświetlamy MessageBox z wynikiem i zapytaniem czy rozpocząć grę od nowa
+                // wynik, który z przycisków został kliknięty zapisujemy do zmiennej
+                var yesno = MessageBox.Show($"Zdobyte punkty: {_settings.AktualnePunkty}",
+                                                                    "Koniec Gry", MessageBoxButtons.YesNo);
+                // jeżeli tak to zaczynamy grę od nowa
+                if(yesno == DialogResult.Yes)
+                {
+                    StartGry();
+                }
+                else
+                {
+                    // jeżeli użytkownik wybierze "nie" to wyłączamy grę
+                    Application.Exit();
+                }
+            }
         }
     }
 }
