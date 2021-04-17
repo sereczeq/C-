@@ -60,7 +60,6 @@ namespace TODOList.Kontrolki
             this.listViewZadania.TabIndex = 0;
             this.listViewZadania.UseCompatibleStateImageBehavior = false;
             this.listViewZadania.View = System.Windows.Forms.View.Details;
-            this.listViewZadania.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnId
             // 
@@ -88,7 +87,6 @@ namespace TODOList.Kontrolki
             this.labelTitle.TabIndex = 1;
             this.labelTitle.Text = "TODO";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelTitle.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelImie
             // 
@@ -96,7 +94,7 @@ namespace TODOList.Kontrolki
             this.labelImie.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelImie.Location = new System.Drawing.Point(41, 123);
             this.labelImie.Name = "labelImie";
-            this.labelImie.Size = new System.Drawing.Size(97, 39);
+            this.labelImie.Size = new System.Drawing.Size(93, 38);
             this.labelImie.TabIndex = 3;
             this.labelImie.Text = "Anon";
             // 
@@ -143,6 +141,7 @@ namespace TODOList.Kontrolki
             this.buttonWroc.TabIndex = 24;
             this.buttonWroc.Text = "⟸";
             this.buttonWroc.UseVisualStyleBackColor = false;
+            this.buttonWroc.Click += new System.EventHandler(this.buttonWroc_Click);
             // 
             // TasksControl
             // 

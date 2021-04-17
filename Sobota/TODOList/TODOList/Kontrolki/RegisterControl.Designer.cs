@@ -64,7 +64,7 @@ namespace TODOList.Kontrolki
             this.labelImie.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelImie.Location = new System.Drawing.Point(50, 187);
             this.labelImie.Name = "labelImie";
-            this.labelImie.Size = new System.Drawing.Size(100, 39);
+            this.labelImie.Size = new System.Drawing.Size(95, 38);
             this.labelImie.TabIndex = 10;
             this.labelImie.Text = "Imię: ";
             // 
@@ -95,7 +95,7 @@ namespace TODOList.Kontrolki
             this.labelLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelLogin.Location = new System.Drawing.Point(50, 284);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(119, 39);
+            this.labelLogin.Size = new System.Drawing.Size(114, 38);
             this.labelLogin.TabIndex = 13;
             this.labelLogin.Text = "Login: ";
             // 
@@ -126,7 +126,7 @@ namespace TODOList.Kontrolki
             this.labelHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelHaslo.Location = new System.Drawing.Point(50, 380);
             this.labelHaslo.Name = "labelHaslo";
-            this.labelHaslo.Size = new System.Drawing.Size(123, 39);
+            this.labelHaslo.Size = new System.Drawing.Size(119, 38);
             this.labelHaslo.TabIndex = 16;
             this.labelHaslo.Text = "Hasło: ";
             // 
@@ -157,7 +157,7 @@ namespace TODOList.Kontrolki
             this.labelPowtorzHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelPowtorzHaslo.Location = new System.Drawing.Point(50, 479);
             this.labelPowtorzHaslo.Name = "labelPowtorzHaslo";
-            this.labelPowtorzHaslo.Size = new System.Drawing.Size(123, 39);
+            this.labelPowtorzHaslo.Size = new System.Drawing.Size(119, 38);
             this.labelPowtorzHaslo.TabIndex = 19;
             this.labelPowtorzHaslo.Text = "Hasło: ";
             // 
@@ -191,6 +191,7 @@ namespace TODOList.Kontrolki
             this.buttonZarejestruj.TabIndex = 22;
             this.buttonZarejestruj.Text = "Zarejestruj";
             this.buttonZarejestruj.UseVisualStyleBackColor = false;
+            this.buttonZarejestruj.Click += new System.EventHandler(this.buttonZarejestruj_Click);
             // 
             // buttonWroc
             // 
@@ -202,6 +203,7 @@ namespace TODOList.Kontrolki
             this.buttonWroc.TabIndex = 23;
             this.buttonWroc.Text = "⟸";
             this.buttonWroc.UseVisualStyleBackColor = false;
+            this.buttonWroc.Click += new System.EventHandler(this.buttonWroc_Click);
             // 
             // RegisterControl
             // 

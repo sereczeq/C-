@@ -81,10 +81,9 @@ namespace TODOList.Kontrolki
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.Location = new System.Drawing.Point(62, 234);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 39);
+            this.label2.Size = new System.Drawing.Size(114, 38);
             this.label2.TabIndex = 4;
             this.label2.Text = "Login: ";
-            this.label2.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // label3
             // 
@@ -92,7 +91,7 @@ namespace TODOList.Kontrolki
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.Location = new System.Drawing.Point(58, 308);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(123, 39);
+            this.label3.Size = new System.Drawing.Size(119, 38);
             this.label3.TabIndex = 5;
             this.label3.Text = "Hasło: ";
             // 
@@ -108,6 +107,7 @@ namespace TODOList.Kontrolki
             this.buttonZaloguj.TabIndex = 6;
             this.buttonZaloguj.Text = "Zaloguj";
             this.buttonZaloguj.UseVisualStyleBackColor = false;
+            this.buttonZaloguj.Click += new System.EventHandler(this.buttonZaloguj_Click);
             // 
             // buttonUtworzKonto
             // 
@@ -118,6 +118,7 @@ namespace TODOList.Kontrolki
             this.buttonUtworzKonto.TabIndex = 7;
             this.buttonUtworzKonto.Text = "Utwórz konto";
             this.buttonUtworzKonto.UseVisualStyleBackColor = false;
+            this.buttonUtworzKonto.Click += new System.EventHandler(this.buttonUtworzKonto_Click);
             // 
             // labelWalidacjaLogowania
             // 
