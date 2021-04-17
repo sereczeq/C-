@@ -16,5 +16,11 @@ namespace TODOList
         {
             InitializeComponent();
         }
+
+        public void PokazLoginControl()
+        {
+            Controls.Clear();
+            Controls.Add(new LoginForm(this));
+        }
     }
 }
