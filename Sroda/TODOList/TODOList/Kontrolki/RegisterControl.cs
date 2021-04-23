@@ -12,24 +12,23 @@ namespace TODOList.Kontrolki
 {
     public partial class RegisterControl : UserControl
     {
-        public RegisterControl()
+        private MainForm MainForm;
+        public RegisterControl(MainForm mainForm)
         {
             InitializeComponent();
+
+            MainForm = mainForm;
+            Dock = DockStyle.Fill;
         }
 
-        private void RegisterControl_Load(object sender, EventArgs e)
+        private void buttonWroc_Click(object sender, EventArgs e)
         {
-
+            MainForm.PokazLoginControl();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonZarejestruj_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void labelLogin_Click(object sender, EventArgs e)
-        {
-
+            MainForm.PokazTaskControl();
         }
     }
 }

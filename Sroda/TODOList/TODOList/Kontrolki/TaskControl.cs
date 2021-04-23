@@ -12,9 +12,18 @@ namespace TODOList.Kontrolki
 {
     public partial class TaskControl : UserControl
     {
-        public TaskControl()
+        private MainForm MainForm;
+        public TaskControl(MainForm mainForm)
         {
             InitializeComponent();
+
+            MainForm = mainForm;
+            Dock = DockStyle.Fill;
+        }
+
+        private void buttonWroc_Click(object sender, EventArgs e)
+        {
+            MainForm.PokazLoginControl();
         }
     }
 }

@@ -51,8 +51,9 @@ namespace TODOList.Kontrolki
             this.labelTytul.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelTytul.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelTytul.Location = new System.Drawing.Point(0, 0);
+            this.labelTytul.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTytul.Name = "labelTytul";
-            this.labelTytul.Size = new System.Drawing.Size(500, 100);
+            this.labelTytul.Size = new System.Drawing.Size(667, 123);
             this.labelTytul.TabIndex = 0;
             this.labelTytul.Text = "Rejestracja";
             this.labelTytul.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -62,45 +63,50 @@ namespace TODOList.Kontrolki
             this.buttonZarejestruj.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonZarejestruj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonZarejestruj.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonZarejestruj.Location = new System.Drawing.Point(115, 500);
+            this.buttonZarejestruj.Location = new System.Drawing.Point(153, 615);
+            this.buttonZarejestruj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonZarejestruj.Name = "buttonZarejestruj";
-            this.buttonZarejestruj.Size = new System.Drawing.Size(270, 100);
+            this.buttonZarejestruj.Size = new System.Drawing.Size(360, 123);
             this.buttonZarejestruj.TabIndex = 13;
             this.buttonZarejestruj.Text = "Zarejestruj";
             this.buttonZarejestruj.UseVisualStyleBackColor = false;
-            this.buttonZarejestruj.Click += new System.EventHandler(this.button1_Click);
+            this.buttonZarejestruj.Click += new System.EventHandler(this.buttonZarejestruj_Click);
             // 
             // buttonWroc
             // 
             this.buttonWroc.BackColor = System.Drawing.Color.SandyBrown;
             this.buttonWroc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonWroc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonWroc.Location = new System.Drawing.Point(10, 3);
+            this.buttonWroc.Location = new System.Drawing.Point(13, 4);
+            this.buttonWroc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonWroc.Name = "buttonWroc";
-            this.buttonWroc.Size = new System.Drawing.Size(50, 30);
+            this.buttonWroc.Size = new System.Drawing.Size(67, 37);
             this.buttonWroc.TabIndex = 14;
             this.buttonWroc.Text = "wróć";
             this.buttonWroc.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.buttonWroc.UseVisualStyleBackColor = false;
+            this.buttonWroc.Click += new System.EventHandler(this.buttonWroc_Click);
             // 
             // textBoxHaslo
             // 
             this.textBoxHaslo.BackColor = System.Drawing.Color.SandyBrown;
             this.textBoxHaslo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxHaslo.Location = new System.Drawing.Point(164, 150);
+            this.textBoxHaslo.Location = new System.Drawing.Point(219, 185);
+            this.textBoxHaslo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxHaslo.Name = "textBoxHaslo";
             this.textBoxHaslo.PasswordChar = '*';
-            this.textBoxHaslo.Size = new System.Drawing.Size(255, 38);
+            this.textBoxHaslo.Size = new System.Drawing.Size(339, 46);
             this.textBoxHaslo.TabIndex = 17;
             // 
             // labelImie
             // 
             this.labelImie.AutoSize = true;
             this.labelImie.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelImie.Location = new System.Drawing.Point(78, 153);
+            this.labelImie.Location = new System.Drawing.Point(104, 188);
+            this.labelImie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelImie.Name = "labelImie";
-            this.labelImie.Size = new System.Drawing.Size(65, 31);
+            this.labelImie.Size = new System.Drawing.Size(82, 39);
             this.labelImie.TabIndex = 16;
             this.labelImie.Text = "Imię";
             // 
@@ -109,9 +115,10 @@ namespace TODOList.Kontrolki
             this.labelNiepoprawneImie.AutoSize = true;
             this.labelNiepoprawneImie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelNiepoprawneImie.ForeColor = System.Drawing.Color.Red;
-            this.labelNiepoprawneImie.Location = new System.Drawing.Point(182, 191);
+            this.labelNiepoprawneImie.Location = new System.Drawing.Point(243, 235);
+            this.labelNiepoprawneImie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNiepoprawneImie.Name = "labelNiepoprawneImie";
-            this.labelNiepoprawneImie.Size = new System.Drawing.Size(214, 16);
+            this.labelNiepoprawneImie.Size = new System.Drawing.Size(252, 20);
             this.labelNiepoprawneImie.TabIndex = 15;
             this.labelNiepoprawneImie.Text = "Niepoprawne dane logowania";
             // 
@@ -120,31 +127,33 @@ namespace TODOList.Kontrolki
             this.textBox1.BackColor = System.Drawing.Color.SandyBrown;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(164, 233);
+            this.textBox1.Location = new System.Drawing.Point(219, 287);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.PasswordChar = '*';
-            this.textBox1.Size = new System.Drawing.Size(255, 38);
+            this.textBox1.Size = new System.Drawing.Size(339, 46);
             this.textBox1.TabIndex = 20;
             // 
             // labelLogin
             // 
             this.labelLogin.AutoSize = true;
             this.labelLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelLogin.Location = new System.Drawing.Point(63, 235);
+            this.labelLogin.Location = new System.Drawing.Point(84, 289);
+            this.labelLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelLogin.Name = "labelLogin";
-            this.labelLogin.Size = new System.Drawing.Size(80, 31);
+            this.labelLogin.Size = new System.Drawing.Size(101, 39);
             this.labelLogin.TabIndex = 19;
             this.labelLogin.Text = "Login";
-            this.labelLogin.Click += new System.EventHandler(this.labelLogin_Click);
             // 
             // labelNiepoprawneLogin
             // 
             this.labelNiepoprawneLogin.AutoSize = true;
             this.labelNiepoprawneLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelNiepoprawneLogin.ForeColor = System.Drawing.Color.Red;
-            this.labelNiepoprawneLogin.Location = new System.Drawing.Point(182, 274);
+            this.labelNiepoprawneLogin.Location = new System.Drawing.Point(243, 337);
+            this.labelNiepoprawneLogin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNiepoprawneLogin.Name = "labelNiepoprawneLogin";
-            this.labelNiepoprawneLogin.Size = new System.Drawing.Size(214, 16);
+            this.labelNiepoprawneLogin.Size = new System.Drawing.Size(252, 20);
             this.labelNiepoprawneLogin.TabIndex = 18;
             this.labelNiepoprawneLogin.Text = "Niepoprawne dane logowania";
             // 
@@ -153,19 +162,21 @@ namespace TODOList.Kontrolki
             this.textBox2.BackColor = System.Drawing.Color.SandyBrown;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.Location = new System.Drawing.Point(164, 310);
+            this.textBox2.Location = new System.Drawing.Point(219, 382);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
             this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(255, 38);
+            this.textBox2.Size = new System.Drawing.Size(339, 46);
             this.textBox2.TabIndex = 23;
             // 
             // labelHaslo
             // 
             this.labelHaslo.AutoSize = true;
             this.labelHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelHaslo.Location = new System.Drawing.Point(63, 312);
+            this.labelHaslo.Location = new System.Drawing.Point(84, 384);
+            this.labelHaslo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHaslo.Name = "labelHaslo";
-            this.labelHaslo.Size = new System.Drawing.Size(84, 31);
+            this.labelHaslo.Size = new System.Drawing.Size(105, 39);
             this.labelHaslo.TabIndex = 22;
             this.labelHaslo.Text = "Hasło";
             // 
@@ -174,9 +185,10 @@ namespace TODOList.Kontrolki
             this.labelNiepoprawneHaslo.AutoSize = true;
             this.labelNiepoprawneHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelNiepoprawneHaslo.ForeColor = System.Drawing.Color.Red;
-            this.labelNiepoprawneHaslo.Location = new System.Drawing.Point(182, 351);
+            this.labelNiepoprawneHaslo.Location = new System.Drawing.Point(243, 432);
+            this.labelNiepoprawneHaslo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNiepoprawneHaslo.Name = "labelNiepoprawneHaslo";
-            this.labelNiepoprawneHaslo.Size = new System.Drawing.Size(214, 16);
+            this.labelNiepoprawneHaslo.Size = new System.Drawing.Size(252, 20);
             this.labelNiepoprawneHaslo.TabIndex = 21;
             this.labelNiepoprawneHaslo.Text = "Niepoprawne dane logowania";
             // 
@@ -185,19 +197,21 @@ namespace TODOList.Kontrolki
             this.textBox3.BackColor = System.Drawing.Color.SandyBrown;
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox3.Location = new System.Drawing.Point(164, 389);
+            this.textBox3.Location = new System.Drawing.Point(219, 479);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox3.Name = "textBox3";
             this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(255, 38);
+            this.textBox3.Size = new System.Drawing.Size(339, 46);
             this.textBox3.TabIndex = 26;
             // 
             // labelPowtorzHaslo
             // 
             this.labelPowtorzHaslo.AutoSize = true;
             this.labelPowtorzHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelPowtorzHaslo.Location = new System.Drawing.Point(43, 391);
+            this.labelPowtorzHaslo.Location = new System.Drawing.Point(57, 481);
+            this.labelPowtorzHaslo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPowtorzHaslo.Name = "labelPowtorzHaslo";
-            this.labelPowtorzHaslo.Size = new System.Drawing.Size(119, 31);
+            this.labelPowtorzHaslo.Size = new System.Drawing.Size(150, 39);
             this.labelPowtorzHaslo.TabIndex = 25;
             this.labelPowtorzHaslo.Text = "Hasło x2";
             // 
@@ -206,15 +220,16 @@ namespace TODOList.Kontrolki
             this.labelNiepoprawnePowtorzHaslo.AutoSize = true;
             this.labelNiepoprawnePowtorzHaslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelNiepoprawnePowtorzHaslo.ForeColor = System.Drawing.Color.Red;
-            this.labelNiepoprawnePowtorzHaslo.Location = new System.Drawing.Point(182, 430);
+            this.labelNiepoprawnePowtorzHaslo.Location = new System.Drawing.Point(243, 529);
+            this.labelNiepoprawnePowtorzHaslo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNiepoprawnePowtorzHaslo.Name = "labelNiepoprawnePowtorzHaslo";
-            this.labelNiepoprawnePowtorzHaslo.Size = new System.Drawing.Size(214, 16);
+            this.labelNiepoprawnePowtorzHaslo.Size = new System.Drawing.Size(252, 20);
             this.labelNiepoprawnePowtorzHaslo.TabIndex = 24;
             this.labelNiepoprawnePowtorzHaslo.Text = "Niepoprawne dane logowania";
             // 
             // RegisterControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PeachPuff;
             this.Controls.Add(this.textBox3);
@@ -232,9 +247,9 @@ namespace TODOList.Kontrolki
             this.Controls.Add(this.buttonWroc);
             this.Controls.Add(this.buttonZarejestruj);
             this.Controls.Add(this.labelTytul);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "RegisterControl";
-            this.Size = new System.Drawing.Size(500, 640);
-            this.Load += new System.EventHandler(this.RegisterControl_Load);
+            this.Size = new System.Drawing.Size(667, 788);
             this.ResumeLayout(false);
             this.PerformLayout();
 
